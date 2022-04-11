@@ -37,7 +37,7 @@ jobs:
             echo "Generate library wheel with the right platform name"
             python build_tools/build_platform_wheel.py ./plugp100/_vendor requirements.txt
       - name: "Upload generated wheel for ${{ matrix.python }} ${{ matrix.arch }}"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: wheel
           path: dist/*
