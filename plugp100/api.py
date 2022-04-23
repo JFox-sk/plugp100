@@ -13,15 +13,14 @@ from plugp100.core.exceptions import TapoException
 from plugp100.core.exceptions.TapoException import TapoException
 from plugp100.core.http_client import AsyncHttp
 from plugp100.core.key_pair import KeyPair
-from plugp100.core.methods import GetDeviceInfoMethod, taporequest
-from plugp100.core.methods import HandshakeMethod
-from plugp100.core.methods import LoginDeviceMethod
-from plugp100.core.methods import SecurePassthroughMethod
+from plugp100.core.methods import (GetDeviceInfoMethod, HandshakeMethod,
+                                   LoginDeviceMethod, SecurePassthroughMethod,
+                                   taporequest)
 from plugp100.core.methods.get_energy_usage import GetEnergyUsageMethod
 from plugp100.core.methods.set_device_info_method import SetDeviceInfoMethod
-from plugp100.core.params import HandshakeParams
-from plugp100.core.params import LoginDeviceParams
-from plugp100.core.params.device_info_params import DeviceInfoParams, SwitchParams, LightParams
+from plugp100.core.params import HandshakeParams, LoginDeviceParams
+from plugp100.core.params.device_info_params import (DeviceInfoParams,
+                                                     LightParams, SwitchParams)
 from plugp100.core.tp_link_cipher import TpLinkCipher
 
 logger = logging.getLogger(__name__)
@@ -33,6 +32,7 @@ class EnergyInfo:
     month_runtime: float = property(lambda self: self.info["month_runtime"])
     today_energy: float = property(lambda self: self.info["today_energy"])
     month_energy: float = property(lambda self: self.info["month_energy"])
+    this_month_energy: float = property(lambda self: self.info['past1y'][11])
     current_power: float = property(lambda self: self.info["current_power"])
 
     def __init__(self, info: Dict[str, Any]):
